@@ -37,27 +37,27 @@ namespace RoomApi.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            RoomId = new Guid("320b9a5c-9d10-4bb3-995c-0748afed26be"),
+                            RoomId = new Guid("bd0d3a46-dfd5-4a76-bd29-dd5aec099207"),
                             BreedId = new Guid("aaae8a7b-abd1-4169-0383-08dd6a9d0b8b")
                         },
                         new
                         {
-                            RoomId = new Guid("fef78c40-202a-482c-a9fd-0cf9e5756bb6"),
+                            RoomId = new Guid("442a2f8f-d71d-4426-99bd-091799147c7c"),
                             BreedId = new Guid("aaae8a7b-abd1-4169-0383-08dd6a9d0b8b")
                         },
                         new
                         {
-                            RoomId = new Guid("fef78c40-202a-482c-a9fd-0cf9e5756bb6"),
+                            RoomId = new Guid("442a2f8f-d71d-4426-99bd-091799147c7c"),
                             BreedId = new Guid("f5614fe7-b506-4379-d3fa-08dd53047a20")
                         },
                         new
                         {
-                            RoomId = new Guid("60bc2bbd-1ac1-48b5-a45e-47b0bbbbd054"),
+                            RoomId = new Guid("c8c2fec0-924e-42cf-95e1-5a56c74566ac"),
                             BreedId = new Guid("aaae8a7b-abd1-4169-0383-08dd6a9d0b8b")
                         },
                         new
                         {
-                            RoomId = new Guid("60bc2bbd-1ac1-48b5-a45e-47b0bbbbd054"),
+                            RoomId = new Guid("c8c2fec0-924e-42cf-95e1-5a56c74566ac"),
                             BreedId = new Guid("f5614fe7-b506-4379-d3fa-08dd53047a20")
                         });
                 });
@@ -99,43 +99,43 @@ namespace RoomApi.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            RoomId = new Guid("dd027e4c-06d4-409d-8d3c-58d9d55261fe"),
+                            RoomId = new Guid("9cbe5159-058d-4021-95f0-66a3deb96226"),
                             IsVisible = true,
                             PricePerDay = 300000m,
                             PricePerHour = 50000m,
                             RoomDesc = "Phòng nhỏ, phù hợp chó con",
                             RoomName = "Phòng 101",
-                            RoomTypeId = new Guid("54d7e43b-ebd8-428d-8df1-825be9141de8")
+                            RoomTypeId = new Guid("9115f1c9-5d04-4199-9ba1-b507d5b14866")
                         },
                         new
                         {
-                            RoomId = new Guid("320b9a5c-9d10-4bb3-995c-0748afed26be"),
+                            RoomId = new Guid("bd0d3a46-dfd5-4a76-bd29-dd5aec099207"),
                             IsVisible = true,
                             PricePerDay = 500000m,
                             PricePerHour = 80000m,
                             RoomDesc = "Phòng VIP cho mèo quý tộc",
                             RoomName = "Phòng 202",
-                            RoomTypeId = new Guid("059bc604-cb72-46fa-b1a1-2540c041093a")
+                            RoomTypeId = new Guid("25f4b852-e34e-435d-88f9-7207e8d00149")
                         },
                         new
                         {
-                            RoomId = new Guid("fef78c40-202a-482c-a9fd-0cf9e5756bb6"),
+                            RoomId = new Guid("442a2f8f-d71d-4426-99bd-091799147c7c"),
                             IsVisible = true,
                             PricePerDay = 450000m,
                             PricePerHour = 70000m,
                             RoomDesc = "Phòng gia đình, cho mèo",
                             RoomName = "Phòng 303",
-                            RoomTypeId = new Guid("2c5147ae-5d4a-40e3-a3a3-4c7028c2169b")
+                            RoomTypeId = new Guid("0c391bbe-fff6-4578-ba12-ab3497927553")
                         },
                         new
                         {
-                            RoomId = new Guid("60bc2bbd-1ac1-48b5-a45e-47b0bbbbd054"),
+                            RoomId = new Guid("c8c2fec0-924e-42cf-95e1-5a56c74566ac"),
                             IsVisible = true,
                             PricePerDay = 600000m,
                             PricePerHour = 90000m,
                             RoomDesc = "Phòng nhỏ cho mèo",
                             RoomName = "Phòng 404",
-                            RoomTypeId = new Guid("54d7e43b-ebd8-428d-8df1-825be9141de8")
+                            RoomTypeId = new Guid("9115f1c9-5d04-4199-9ba1-b507d5b14866")
                         });
                 });
 
@@ -176,33 +176,33 @@ namespace RoomApi.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            RoomAccessoryId = new Guid("315877c2-c057-4f35-80b0-1af37b84529d"),
+                            RoomAccessoryId = new Guid("992ff21f-ab7f-47c8-9477-ba3a5c5dc10b"),
                             IsVisible = true,
                             RoomAccessoryDesc = "Khay vệ sinh cho mèo",
                             RoomAccessoryImagePath = "khaycat.jpg",
                             RoomAccessoryName = "Khay cát",
-                            RoomTypeId = new Guid("2c5147ae-5d4a-40e3-a3a3-4c7028c2169b"),
-                            ServiceId = new Guid("fb42c512-3dd6-4fce-8a97-a683522ad691")
+                            RoomTypeId = new Guid("0c391bbe-fff6-4578-ba12-ab3497927553"),
+                            ServiceId = new Guid("4709e073-15e2-46a6-90a4-4a89f19b6415")
                         },
                         new
                         {
-                            RoomAccessoryId = new Guid("46d6e8c3-4c53-4b2a-80c6-0f9138b49e7d"),
+                            RoomAccessoryId = new Guid("41fe86ff-efa4-4686-938c-3060e74206bc"),
                             IsVisible = true,
                             RoomAccessoryDesc = "Cho mèo chơi và tập thể dục",
                             RoomAccessoryImagePath = "cayleo.jpg",
                             RoomAccessoryName = "Cây leo",
-                            RoomTypeId = new Guid("059bc604-cb72-46fa-b1a1-2540c041093a"),
-                            ServiceId = new Guid("3591729e-3199-4bce-95e4-c502b8907e8c")
+                            RoomTypeId = new Guid("25f4b852-e34e-435d-88f9-7207e8d00149"),
+                            ServiceId = new Guid("280dad45-5bcf-4ff8-942b-43407af1b8d1")
                         },
                         new
                         {
-                            RoomAccessoryId = new Guid("56ce2368-f739-465b-ba7d-7f81a98309c0"),
+                            RoomAccessoryId = new Guid("6050f700-f906-4366-b140-be301d6f2d15"),
                             IsVisible = true,
                             RoomAccessoryDesc = "Quan sát thú cưng từ xa",
                             RoomAccessoryImagePath = "camera.jpg",
                             RoomAccessoryName = "Camera",
-                            RoomTypeId = new Guid("059bc604-cb72-46fa-b1a1-2540c041093a"),
-                            ServiceId = new Guid("92432a57-5845-42a8-bdf2-c5c8c84c43a9")
+                            RoomTypeId = new Guid("25f4b852-e34e-435d-88f9-7207e8d00149"),
+                            ServiceId = new Guid("7fae2056-1267-4372-b59c-d40287de8aad")
                         });
                 });
 
@@ -224,27 +224,27 @@ namespace RoomApi.Infrastructure.Data.Migrations
                         new
                         {
                             RoomImagePath = "101.jpg",
-                            RoomId = new Guid("dd027e4c-06d4-409d-8d3c-58d9d55261fe")
+                            RoomId = new Guid("9cbe5159-058d-4021-95f0-66a3deb96226")
                         },
                         new
                         {
                             RoomImagePath = "202.jpg",
-                            RoomId = new Guid("320b9a5c-9d10-4bb3-995c-0748afed26be")
+                            RoomId = new Guid("bd0d3a46-dfd5-4a76-bd29-dd5aec099207")
                         },
                         new
                         {
                             RoomImagePath = "303.jpg",
-                            RoomId = new Guid("fef78c40-202a-482c-a9fd-0cf9e5756bb6")
+                            RoomId = new Guid("442a2f8f-d71d-4426-99bd-091799147c7c")
                         },
                         new
                         {
                             RoomImagePath = "404.jpg",
-                            RoomId = new Guid("60bc2bbd-1ac1-48b5-a45e-47b0bbbbd054")
+                            RoomId = new Guid("c8c2fec0-924e-42cf-95e1-5a56c74566ac")
                         },
                         new
                         {
                             RoomImagePath = "505.jpg",
-                            RoomId = new Guid("add075db-a9a0-4107-8dec-d4090b43a305")
+                            RoomId = new Guid("a1210a7c-a138-4e72-bdbc-9eaaffd11192")
                         });
                 });
 
@@ -274,21 +274,21 @@ namespace RoomApi.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            RoomTypeId = new Guid("54d7e43b-ebd8-428d-8df1-825be9141de8"),
+                            RoomTypeId = new Guid("9115f1c9-5d04-4199-9ba1-b507d5b14866"),
                             IsVisible = true,
                             RoomTypeDesc = "Phòng cơ bản cho thú cưng nhỏ",
                             RoomTypeName = "Phòng Tiêu Chuẩn"
                         },
                         new
                         {
-                            RoomTypeId = new Guid("059bc604-cb72-46fa-b1a1-2540c041093a"),
+                            RoomTypeId = new Guid("25f4b852-e34e-435d-88f9-7207e8d00149"),
                             IsVisible = true,
                             RoomTypeDesc = "Phòng rộng rãi, tiện nghi cao cấp",
                             RoomTypeName = "Phòng VIP"
                         },
                         new
                         {
-                            RoomTypeId = new Guid("2c5147ae-5d4a-40e3-a3a3-4c7028c2169b"),
+                            RoomTypeId = new Guid("0c391bbe-fff6-4578-ba12-ab3497927553"),
                             IsVisible = true,
                             RoomTypeDesc = "Dành cho nhiều thú cưng cùng ở",
                             RoomTypeName = "Phòng Gia Đình"

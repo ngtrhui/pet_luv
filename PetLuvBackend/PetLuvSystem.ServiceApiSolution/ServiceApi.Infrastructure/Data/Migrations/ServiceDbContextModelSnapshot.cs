@@ -148,21 +148,21 @@ namespace ServiceApi.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            ServiceTypeId = new Guid("c74b751b-56cc-4f9e-92eb-d08032f7af3b"),
+                            ServiceTypeId = new Guid("4649046c-cc77-4aa1-b743-2837a60f88d7"),
                             IsVisible = false,
                             ServiceTypeDesc = "Cung cấp các dịch vụ spa cho thú cưng trực tiếp tại cửa hàng",
                             ServiceTypeName = "Dịch vụ spa"
                         },
                         new
                         {
-                            ServiceTypeId = new Guid("14039a05-c713-4853-9331-4d4871cd78df"),
+                            ServiceTypeId = new Guid("a773e087-0e21-4301-a5df-1273620688a5"),
                             IsVisible = false,
                             ServiceTypeDesc = "Chúng tôi sẵn sàng trực tiếp đến nhà chăm sóc cho \"boss\" của bạn nếu bạn đang quá bận",
                             ServiceTypeName = "Dịch vụ spa tại nhà"
                         },
                         new
                         {
-                            ServiceTypeId = new Guid("d734146d-3fa5-42cc-bb0b-621c186badb4"),
+                            ServiceTypeId = new Guid("7ced06cb-8862-41de-ad76-2f4ddf7a2387"),
                             IsVisible = false,
                             ServiceTypeDesc = "Nếu bạn đang quá bận để giúp cún cưng của mình giải tỏa năng lượng, hãy để chúng tôi giúp bạn làm điều đó",
                             ServiceTypeName = "Dịch vụ dắt chó đi dạo"

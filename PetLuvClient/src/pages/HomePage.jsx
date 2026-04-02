@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Carousel } from '../components';
 import CategoryList from '../components/HomePage/CategoryList';
-import { BiSupport } from 'react-icons/bi';
 import ServiceCardList from '../components/common/ServiceCardList';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useDispatch } from 'react-redux';
@@ -27,7 +26,8 @@ const HomePage = () => {
   }, [error]);
 
   return (
-    <div>
+    <div className='gap-6 p-6 min-h-screen max-w-7xl mx-auto'>
+      <div>
       <Carousel />
 
       <CategoryList />
@@ -48,7 +48,7 @@ const HomePage = () => {
           />
         </Link>
       </section>
-
+</div>
       <section>
         <h1 className='uppercase text-primary text-3xl text-center font-bold mb-4'>
           Dịch vụ nổi bật tại PetLuv
@@ -76,7 +76,7 @@ const HomePage = () => {
         width='100%'
       />
 
-      <section>
+      <section className="">
         <h1 className='uppercase text-primary text-3xl text-center font-bold mb-4'>
           Dịch vụ gợi ý cho bạn
         </h1>
@@ -121,16 +121,7 @@ const HomePage = () => {
         />
       </section>
 
-      <section className='flex items-center justify-center gap-8 bg-primary text-secondary text-3xl py-10'>
-        <BiSupport size={'6rem'} className='text-primary-dark' />
-        <h2>
-          Hotline hỗ trợ 24/7 của chúng tôi luôn sẵn sàng giải đáp mọi thắc mắc
-          của bạn |{' '}
-          <span className='text-white hover:text-gray-200 hover:cursor-pointer'>
-            0916380593
-          </span>
-        </h2>
-      </section>
+    
     </div>
   );
 };

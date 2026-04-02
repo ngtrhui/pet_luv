@@ -96,25 +96,31 @@ namespace BookingApi.Infrastructure.Data.Migrations
                     b.HasData(
                         new
                         {
-                            BookingStatusId = new Guid("888d34ef-e815-42f3-bccf-21f51981b1d3"),
+                            BookingStatusId = new Guid("00487a5f-a338-4e75-b403-c539808eceb6"),
                             BookingStatusName = "Đang xử lý",
                             IsVisible = true
                         },
                         new
                         {
-                            BookingStatusId = new Guid("632898b3-d675-4b4f-bf49-cf8c629ddb8c"),
+                            BookingStatusId = new Guid("23a8e766-9b1a-4fee-8dd1-0c8f7586ec74"),
                             BookingStatusName = "Đã xác nhận",
                             IsVisible = true
                         },
                         new
                         {
-                            BookingStatusId = new Guid("8d314818-a01d-4d60-8b26-dc7d047693ae"),
+                            BookingStatusId = new Guid("922f16ba-73bd-4895-90e3-97ba5f11671f"),
+                            BookingStatusName = "Đã đặt cọc",
+                            IsVisible = true
+                        },
+                        new
+                        {
+                            BookingStatusId = new Guid("1fe8229e-dcca-47fe-a82a-fd8ff149c304"),
                             BookingStatusName = "Đã hoàn thành",
                             IsVisible = true
                         },
                         new
                         {
-                            BookingStatusId = new Guid("10dac2d7-1cb1-4d82-839e-343072429624"),
+                            BookingStatusId = new Guid("4806f379-e8bd-48ec-8b96-be5ce5bb4c5f"),
                             BookingStatusName = "Đã hủy",
                             IsVisible = true
                         });

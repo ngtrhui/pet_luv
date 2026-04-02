@@ -27,12 +27,12 @@ const CommonLayout = ({ children }) => {
       defaultLanguage: 'en',
       initialMessages: [
         'Xin chào! 👋',
-        'Tôi là Sú Gơ, trợ lý ảo của PetLuv. Bạn cần hỗ trợ gì không?',
+        'Tôi là PowPow, trợ lý ảo của PetLuv. Bạn cần hỗ trợ gì không?',
       ],
       i18n: {
         en: {
           title: 'Xin chào! 👋',
-          subtitle: 'Trợ lý ảo Sú Gơ hỗ trợ 24/7',
+          subtitle: 'Trợ lý ảo Pow Pow hỗ trợ 24/7',
           footer: '',
           getStarted: 'New Conversation',
           inputPlaceholder: 'Bạn cần gì...',

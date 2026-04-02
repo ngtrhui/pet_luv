@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'iciel-crocante';
+  src: url('./assets/fonts/iciel-crocante.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.my-swal-title {
+  font-size: 24px !important;
+  color: #f79400 !important;
+  font-family: 'iciel-crocante', 'Arial', sans-serif !important;
+  letter-spacing: 0.05em !important;
+}
+
+:is(tbody, table) > tr:nth-child(odd) {
+  background-color: #efefef;
+}
