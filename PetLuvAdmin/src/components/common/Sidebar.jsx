@@ -22,7 +22,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
     <animated.aside
       style={sidebarSpring}
-      className='bg-primary-light text-white h-screen flex flex-col p-4'
+      className='bg-primary-light text-gray h-screen flex flex-col p-4'
     >
       <div
         className={`flex items-center justify-between ${
@@ -38,7 +38,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </Link>
         <button
           onClick={toggleSidebar}
-          className={`text-white ${isOpen ? '-mt-6' : 'ms-1'}`}
+          className={`text-black ${isOpen ? '-mt-6' : 'ms-1'}`}
         >
           <MdMenu
             size={isOpen ? 24 : 20}

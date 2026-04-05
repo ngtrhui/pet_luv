@@ -3,17 +3,14 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      DEFAULT: '#FFA4A4',   // màu chính (CTA, button)
+      main: '#FFA4A4',
       light: '#FFBDBD',
     },
     secondary: {
-      DEFAULT: '#BADFDB',   // màu phụ (card, section)
+      main: '#BADFDB',
     },
-    tertiary: {
-      DEFAULT: '#cfcfcf',
-      light: '#e0e0e0',
-      dark: '#aeaeae',
-    },
+    // ⚠️ tertiary không phải key mặc định của MUI
+    // nếu muốn dùng, phải custom thêm (xem dưới)
   },
 });
 

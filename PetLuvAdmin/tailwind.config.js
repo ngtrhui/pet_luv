@@ -10,24 +10,14 @@ export default {
           soft: '#FFE8CD',
         },
         secondary: {
-          DEFAULT: '#333333',   // sidebar / header (dark cho dễ nhìn)
           light: '#666666',
+          'supper-light': '#6595d8',
+          DEFAULT: '#333333',
         },
-        background: {
-          DEFAULT: '#FFF2EB',
-          panel: '#FFFFFF',     // card admin
+        tertiary: {
+          light: '#efefef',
+          dark: '#aeaeae',
         },
-        border: '#FFE8CD',
-        text: {
-          primary: '#333333',
-          secondary: '#666666',
-          inverse: '#FFFFFF',
-        },
-        status: {
-          success: '#A7E3C3',
-          warning: '#FFE8CD',
-          danger: '#FFB3B3',
-        }
       },
       fontFamily: {
         cute: ['"iciel-crocante"', 'cursive'],

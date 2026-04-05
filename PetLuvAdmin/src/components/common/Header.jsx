@@ -21,7 +21,7 @@ const Header = () => {
       <div className='flex items-center gap-3 me-4 md:w-[12rem] hover:cursor-pointer'>
         <Avatar alt='User' src='/user-avatar.png' />
         <span className='font-medium md:max-w-[8rem] truncate'>
-          Nguyễn Khoa Admin
+          Huy Nguyễn Admin
         </span>
         <button onClick={() => dispatch(logout())}>
           <Tooltip title='Đăng xuất'>
