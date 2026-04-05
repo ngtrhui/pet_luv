@@ -5,15 +5,21 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#FFA4A4',   // màu chính (CTA, button)
-          light: '#FFBDBD',
+          DEFAULT: '#FFD6BA',   // CTA, button
+          light: '#FFE8CD',     // hover
+          soft: '#FFDCDC',      // badge, highlight nhẹ
         },
         secondary: {
-          DEFAULT: '#BADFDB',   // màu phụ (card, section)
+          DEFAULT: '#FFE8CD',   // section background
         },
         background: {
-          DEFAULT: '#FCF9EA',   // nền chính
+          DEFAULT: '#FFF2EB',   // nền chính
         },
+        text: {
+          primary: '#333333',
+          secondary: '#666666',
+        },
+        border: '#FFE8CD',
       },
       fontFamily: {
         cute: ['"iciel-crocante"', 'cursive'],
