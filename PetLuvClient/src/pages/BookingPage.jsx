@@ -80,8 +80,10 @@ const BookingPage = () => {
 
   // BookingType
   const bookingTypes = useSelector(
-  (state) => state.bookingTypes.bookingTypes || []
-);
+    (state) => state.bookingTypes.bookingTypes || []
+  );
+
+  const variants = useSelector((state) => state.services.variants);
   console.log("bookingTypes:", bookingTypes);
   const selectedTypeId = useSelector(
     (state) => state.bookingTypes.selectedTypeId
@@ -380,10 +382,10 @@ const BookingPage = () => {
             <StepLabel
               icon={step.icon}
               className={`text-lg font-semibold ${activeStep === index
-                  ? 'text-primary'
-                  : activeStep > index
-                    ? 'text-green-600'
-                    : 'text-gray-400'
+                ? 'text-primary'
+                : activeStep > index
+                  ? 'text-green-600'
+                  : 'text-gray-400'
                 }`}
             >
               {step.label}
@@ -418,7 +420,10 @@ const BookingPage = () => {
               isLoading={bookingLoading}
             />
           ) : (
-            <ChooseVariantStepperContent setVariant={handleSetVariant} />
+            <ChooseVariantStepperContent
+              variants={variants}
+              setVariant={handleSetVariant}
+            />
           )
         ) : activeStep === 4 ? (
           <ConfirmInforStepperContent setHandleBook={setHandleBook} />
@@ -432,8 +437,8 @@ const BookingPage = () => {
           disabled={activeStep === 0}
           onClick={handleBack}
           className={`bg-gray-500 px-8 py-2 rounded-lg text-white ${activeStep === 0
-              ? 'cursor-not-allowed bg-gray-400'
-              : 'cursor-pointer hover:bg-gray-400'
+            ? 'cursor-not-allowed bg-gray-400'
+            : 'cursor-pointer hover:bg-gray-400'
             }`}
         >
           Quay lại
@@ -442,8 +447,8 @@ const BookingPage = () => {
           <button
             color='success'
             className={`bg-green-500 px-8 py-2 rounded-lg text-white hover:bg-green-400 text-center ${bookingLoading
-                ? 'cursor-not-allowed bg-green-400'
-                : 'cursor-pointer'
+              ? 'cursor-not-allowed bg-green-400'
+              : 'cursor-pointer'
               }`}
             onClick={handleBook}
           >
@@ -463,8 +468,8 @@ const BookingPage = () => {
             onClick={handleNext}
             color='primary'
             className={`bg-primary px-8 py-2 rounded-lg text-white ${disableNext === null
-                ? 'cursor-pointer hover:bg-primary-dark'
-                : 'cursor-not-allowed bg-primary-light'
+              ? 'cursor-pointer hover:bg-primary-dark'
+              : 'cursor-not-allowed bg-primary-light'
               }`}
           >
             Tiếp tục
