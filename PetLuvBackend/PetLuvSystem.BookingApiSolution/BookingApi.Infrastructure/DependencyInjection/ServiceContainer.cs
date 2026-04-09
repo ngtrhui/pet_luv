@@ -41,7 +41,7 @@ namespace BookingApi.Infrastructure.DependencyInjection
 
                 x.UsingRabbitMq((context, cfg) =>
                 {
-                    cfg.Host("rabbitmq://localhost", h =>
+                    cfg.Host("rabbitmq://rabbitmq", h =>
                     {
                         h.Username("guest");
                         h.Password("guest");

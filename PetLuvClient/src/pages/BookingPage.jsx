@@ -79,7 +79,10 @@ const BookingPage = () => {
   const [checkOutDate, setCheckOutDate] = useState(null);
 
   // BookingType
-  const bookingTypes = useSelector((state) => state.bookingTypes.bookingTypes);
+  const bookingTypes = useSelector(
+  (state) => state.bookingTypes.bookingTypes || []
+);
+  console.log("bookingTypes:", bookingTypes);
   const selectedTypeId = useSelector(
     (state) => state.bookingTypes.selectedTypeId
   );
@@ -98,17 +101,17 @@ const BookingPage = () => {
   const formattedBookingTypes = useMemo(() => {
     return Array.isArray(bookingTypes) && bookingTypes.length !== 0
       ? bookingTypes.map((type) => ({
-          id: type.bookingTypeId,
-          label: type.bookingTypeName,
-          icon: type.bookingTypeName.toLowerCase().includes('chăm sóc') ? (
-            <FaBath className='text-primary w-12 h-12' />
-          ) : type.bookingTypeName.toLowerCase().includes('dắt chó') ? (
-            <FaDog className='text-primary w-12 h-12' />
-          ) : (
-            <FaHotel className='text-primary w-12 h-12' />
-          ),
-          description: type.bookingTypeDesc,
-        }))
+        id: type.bookingTypeId,
+        label: type.bookingTypeName,
+        icon: type.bookingTypeName.toLowerCase().includes('chăm sóc') ? (
+          <FaBath className='text-primary w-12 h-12' />
+        ) : type.bookingTypeName.toLowerCase().includes('dắt chó') ? (
+          <FaDog className='text-primary w-12 h-12' />
+        ) : (
+          <FaHotel className='text-primary w-12 h-12' />
+        ),
+        description: type.bookingTypeDesc,
+      }))
       : [];
   }, [bookingTypes]);
 
@@ -346,7 +349,7 @@ const BookingPage = () => {
   useEffect(() => {
     dispatch(getBookingTypes({ pageIndex: 1, pageSize: 1000 }))
       .unwrap()
-      .then(() => {})
+      .then(() => { })
       .catch((error) => {
         console.log(error);
         toast.error(error);
@@ -376,13 +379,12 @@ const BookingPage = () => {
           <Step key={index} completed={activeStep > index}>
             <StepLabel
               icon={step.icon}
-              className={`text-lg font-semibold ${
-                activeStep === index
+              className={`text-lg font-semibold ${activeStep === index
                   ? 'text-primary'
                   : activeStep > index
-                  ? 'text-green-600'
-                  : 'text-gray-400'
-              }`}
+                    ? 'text-green-600'
+                    : 'text-gray-400'
+                }`}
             >
               {step.label}
             </StepLabel>
@@ -401,7 +403,7 @@ const BookingPage = () => {
           <ChoosePetStepperContent setPet={handleSetPet} />
         ) : activeStep === 3 ? (
           selectedType?.name?.toLowerCase()?.includes('khách sạn') ||
-          selectedType?.name?.toLowerCase()?.includes('phòng') ? (
+            selectedType?.name?.toLowerCase()?.includes('phòng') ? (
             <ChooseRoomBookTime
               bookingType={bookingType}
               checkInDate={checkInDate}
@@ -429,22 +431,20 @@ const BookingPage = () => {
         <button
           disabled={activeStep === 0}
           onClick={handleBack}
-          className={`bg-gray-500 px-8 py-2 rounded-lg text-white ${
-            activeStep === 0
+          className={`bg-gray-500 px-8 py-2 rounded-lg text-white ${activeStep === 0
               ? 'cursor-not-allowed bg-gray-400'
               : 'cursor-pointer hover:bg-gray-400'
-          }`}
+            }`}
         >
           Quay lại
         </button>
         {activeStep === steps.length - 1 ? (
           <button
             color='success'
-            className={`bg-green-500 px-8 py-2 rounded-lg text-white hover:bg-green-400 text-center ${
-              bookingLoading
+            className={`bg-green-500 px-8 py-2 rounded-lg text-white hover:bg-green-400 text-center ${bookingLoading
                 ? 'cursor-not-allowed bg-green-400'
                 : 'cursor-pointer'
-            }`}
+              }`}
             onClick={handleBook}
           >
             {bookingLoading ? (
@@ -462,11 +462,10 @@ const BookingPage = () => {
             disabled={disableNext !== null}
             onClick={handleNext}
             color='primary'
-            className={`bg-primary px-8 py-2 rounded-lg text-white ${
-              disableNext === null
+            className={`bg-primary px-8 py-2 rounded-lg text-white ${disableNext === null
                 ? 'cursor-pointer hover:bg-primary-dark'
                 : 'cursor-not-allowed bg-primary-light'
-            }`}
+              }`}
           >
             Tiếp tục
           </button>

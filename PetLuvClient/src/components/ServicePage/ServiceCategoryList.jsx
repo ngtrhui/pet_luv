@@ -52,7 +52,7 @@ const ServiceCategoryList = () => {
               className='bg-primary-light px-6 py-8 rounded-lg'
             >
               <div className='w-72 h-72 mx-auto'>{item.categoryIcon}</div>
-              <h1 className='text-2xl font-semibold text-secondary text-center mt-4'>
+              <h1 className='text-2xl font-semibold text-black text-center mt-4'>
                 {item.categoryName}
               </h1>
             </Link>

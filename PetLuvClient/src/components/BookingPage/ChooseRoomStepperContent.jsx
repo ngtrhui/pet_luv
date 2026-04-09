@@ -58,11 +58,10 @@ const ChooseRoomStepperContent = ({
           </h1>
           <span
             onClick={onResetSelectedRooms}
-            className={`${
-              Array.isArray(selectedRooms) && selectedRooms.length !== 0
+            className={`${Array.isArray(selectedRooms) && selectedRooms.length !== 0
                 ? 'text-red-500 hover:cursor-pointer hover:text-red-400'
                 : 'text-gray-500 hover:cursor-not-allowed'
-            }  text-xl italic font-light me-8`}
+              }  text-xl italic font-light me-8`}
           >
             Xóa tất cả
           </span>
