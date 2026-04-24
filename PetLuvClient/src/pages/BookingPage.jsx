@@ -375,112 +375,133 @@ const BookingPage = () => {
   }, [dispatch]);
 
   return (
-    <div className='flex flex-col items-center p-8 max-w-7xl mx-auto'>
-      <Stepper activeStep={activeStep} alternativeLabel className='w-full'>
-        {steps.map((step, index) => (
-          <Step key={index} completed={activeStep > index}>
-            <StepLabel
-              icon={step.icon}
-              className={`text-lg font-semibold ${activeStep === index
-                ? 'text-primary'
-                : activeStep > index
-                  ? 'text-green-600'
-                  : 'text-gray-400'
+    <div className="relative min-h-screen flex flex-col items-center p-8 max-w-7xl mx-auto overflow-hidden">
+
+      {/* BACKGROUND */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,#3b82f6,transparent_40%),radial-gradient(circle_at_70%_70%,#22c55e,transparent_40%)] opacity-30" />
+
+      {/* CONTENT */}
+      <div className="relative z-10 w-full">
+
+        {/* STEPPER */}
+        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl">
+          <Stepper activeStep={activeStep} alternativeLabel>
+            {steps.map((step, index) => (
+              <Step key={index} completed={activeStep > index}>
+                <StepLabel
+                  icon={step.icon}
+                  className={`text-sm font-medium ${activeStep === index
+                      ? 'text-white'
+                      : activeStep > index
+                        ? 'text-green-300'
+                        : 'text-white'
+                    }`}
+                >
+                  {step.label}
+                </StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+        </div>
+
+        {/* MAIN CONTENT */}
+        <div className="mt-8 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl text-white">
+
+          <div className="text-center">
+            {activeStep === 0 ? (
+              <ChooseBookingTypeContent
+                bookingTypes={formattedBookingTypes}
+                onSelect={handleSelectBookingtype}
+              />
+            ) : activeStep === 1 ? (
+              <ChooseServiceContainer selectedBookingType={selectedType} />
+            ) : activeStep === 2 ? (
+              <ChoosePetStepperContent setPet={handleSetPet} />
+            ) : activeStep === 3 ? (
+              selectedType?.name?.toLowerCase()?.includes('khách sạn') ||
+                selectedType?.name?.toLowerCase()?.includes('phòng') ? (
+                <ChooseRoomBookTime
+                  bookingType={bookingType}
+                  checkInDate={checkInDate}
+                  checkOutDate={checkOutDate}
+                  onBookingTypeSelect={handleBookingTypeSelect}
+                  onCheckInChange={handleCheckInChange}
+                  onCheckOutChange={handleCheckOutChange}
+                  onConfirm={handleRoomBookingConfirm}
+                  shouldDisableTime={shouldDisableTime}
+                  openingTime={8}
+                  closingTime={17}
+                  isLoading={bookingLoading}
+                />
+              ) : (
+                <ChooseVariantStepperContent
+                  variants={variants}
+                  setVariant={handleSetVariant}
+                />
+              )
+            ) : activeStep === 4 ? (
+              <ConfirmInforStepperContent setHandleBook={setHandleBook} />
+            ) : (
+              <h1 className="text-2xl font-bold">
+                {steps[activeStep]?.label}
+              </h1>
+            )}
+          </div>
+
+        </div>
+
+        {/* ACTION BUTTONS */}
+        <div className="mt-8 flex justify-between w-full">
+
+          {/* BACK */}
+          <button
+            disabled={activeStep === 0}
+            onClick={handleBack}
+            className={`px-8 py-2 rounded-xl text-white transition ${activeStep === 0
+                ? 'bg-white/20 cursor-not-allowed'
+                : 'bg-white/10 hover:bg-white/20'
+              }`}
+          >
+            Quay lại
+          </button>
+
+          {/* NEXT / FINISH */}
+          {activeStep === steps.length - 1 ? (
+            <button
+              onClick={handleBook}
+              className={`px-8 py-2 rounded-xl text-white font-semibold transition ${bookingLoading
+                  ? 'bg-green-400 cursor-not-allowed'
+                  : 'bg-green-500 hover:bg-green-400'
                 }`}
             >
-              {step.label}
-            </StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-      <div className='mt-8 text-center'>
-        {activeStep === 0 ? (
-          <ChooseBookingTypeContent
-            bookingTypes={formattedBookingTypes}
-            onSelect={handleSelectBookingtype}
-          />
-        ) : activeStep === 1 ? (
-          <ChooseServiceContainer selectedBookingType={selectedType} />
-        ) : activeStep === 2 ? (
-          <ChoosePetStepperContent setPet={handleSetPet} />
-        ) : activeStep === 3 ? (
-          selectedType?.name?.toLowerCase()?.includes('khách sạn') ||
-            selectedType?.name?.toLowerCase()?.includes('phòng') ? (
-            <ChooseRoomBookTime
-              bookingType={bookingType}
-              checkInDate={checkInDate}
-              checkOutDate={checkOutDate}
-              onBookingTypeSelect={handleBookingTypeSelect}
-              onCheckInChange={handleCheckInChange}
-              onCheckOutChange={handleCheckOutChange}
-              onConfirm={handleRoomBookingConfirm}
-              shouldDisableTime={shouldDisableTime}
-              openingTime={8}
-              closingTime={17}
-              isLoading={bookingLoading}
-            />
+              {bookingLoading ? (
+                <CircularProgress size={'1rem'} color="inherit" />
+              ) : (
+                'Hoàn thành'
+              )}
+            </button>
           ) : (
-            <ChooseVariantStepperContent
-              variants={variants}
-              setVariant={handleSetVariant}
-            />
-          )
-        ) : activeStep === 4 ? (
-          <ConfirmInforStepperContent setHandleBook={setHandleBook} />
-        ) : (
-          <h1 className='text-2xl font-bold'>{steps[activeStep]?.label}</h1>
-        )}
-      </div>
+            <button
+              disabled={disableNext !== null}
+              onClick={handleNext}
+              className={`px-8 py-2 rounded-xl text-white font-semibold transition ${disableNext === null
+                  ? 'bg-gradient-to-r from-primary to-secondary hover:opacity-90'
+                  : 'bg-white/20 cursor-not-allowed'
+                }`}
+            >
+              Tiếp tục
+            </button>
+          )}
+        </div>
 
-      <div className='mt-8 flex justify-between w-full'>
-        <button
-          disabled={activeStep === 0}
-          onClick={handleBack}
-          className={`bg-gray-500 px-8 py-2 rounded-lg text-white ${activeStep === 0
-            ? 'cursor-not-allowed bg-gray-400'
-            : 'cursor-pointer hover:bg-gray-400'
-            }`}
-        >
-          Quay lại
-        </button>
-        {activeStep === steps.length - 1 ? (
-          <button
-            color='success'
-            className={`bg-green-500 px-8 py-2 rounded-lg text-white hover:bg-green-400 text-center ${bookingLoading
-              ? 'cursor-not-allowed bg-green-400'
-              : 'cursor-pointer'
-              }`}
-            onClick={handleBook}
-          >
-            {bookingLoading ? (
-              <CircularProgress
-                size={'1rem'}
-                color='inherit'
-                className='mx-8'
-              />
-            ) : (
-              'Hoàn thành'
-            )}
-          </button>
-        ) : (
-          <button
-            disabled={disableNext !== null}
-            onClick={handleNext}
-            color='primary'
-            className={`bg-primary px-8 py-2 rounded-lg text-white ${disableNext === null
-              ? 'cursor-pointer hover:bg-primary-dark'
-              : 'cursor-not-allowed bg-primary-light'
-              }`}
-          >
-            Tiếp tục
-          </button>
+        {/* ERROR */}
+        {disableNext && (
+          <span className="text-sm text-red-300 mt-3 italic block text-right">
+            {disableNext}
+          </span>
         )}
       </div>
-      {disableNext && (
-        <span className='text-md text-red-600 font-light ms-auto mt-2 italic'>
-          {disableNext}
-        </span>
-      )}
     </div>
   );
 };

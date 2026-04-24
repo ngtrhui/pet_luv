@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSpring, animated } from '@react-spring/web';
 import { Avatar, IconButton, TextField } from '@mui/material';
-// import SearchIcon from '@mui/icons-material/Search';
-// import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import SearchIcon from '@mui/icons-material/Search';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { hoverDropdownConfig } from '../../configs/animationConfigurations';
 import { useSelector } from 'react-redux';
 

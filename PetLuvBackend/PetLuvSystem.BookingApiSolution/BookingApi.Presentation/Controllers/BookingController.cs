@@ -223,7 +223,7 @@ namespace BookingApi.Presentation.Controllers
                         false, 400, "Có lỗi xảy ra trong quá trình xử lý booking. Vui lòng thử lại sau"
                     )).ToActionResult(this);
                 }
-
+Console.WriteLine("=== CALLING PAYMENT STATUS ===");
                 var paymentStatusId = await _checkPaymentStatusService.GetPaymentStatusIdByName("Chờ thanh toán");
                 var bookingStatusId = await _bookingStatus.FindBookingStatusIdByName("Đang xử lý");
 

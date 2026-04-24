@@ -163,35 +163,35 @@ namespace BookingApi.Infrastructure.Services
 
                 var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
                 var jsonNode = JsonNode.Parse(json);
-                var paymentStatusJson = jsonNode?["data"]?.ToString();
+                var paymentStatusIdStr = jsonNode?["data"]?.GetValue<string>();
 
-                if (string.IsNullOrEmpty(paymentStatusJson))
+                if (string.IsNullOrEmpty(paymentStatusIdStr))
                 {
-                    LogException.LogError("Failed to extract 'data' field from API response.");
+                    LogException.LogError("Failed to extract paymentStatusId.");
                     return Guid.Empty;
                 }
 
-                var paymentStatuses = JsonSerializer.Deserialize<List<PaymentStatus>>(paymentStatusJson, options);
-
-                if (paymentStatuses == null || !paymentStatuses.Any())
+                if (!Guid.TryParse(paymentStatusIdStr, out var paymentStatusId))
                 {
-                    LogException.LogError("Failed to deserialize response data.");
+                    LogException.LogError($"Invalid GUID format: {paymentStatusIdStr}");
                     return Guid.Empty;
                 }
 
-                LogException.LogInformation("PaymentStatus list retrieved from API.");
+                LogException.LogInformation($"PaymentStatusId retrieved: {paymentStatusId}");
 
-                var visibleStatuses = paymentStatuses
-                    .Where(p => p.IsVisible)
-                    .ToDictionary(p => p.PaymentStatusName, p => p.PaymentStatusId.ToString()); // stringify
+                // cache lại
+                var cacheDict = new Dictionary<string, string>
+                {
+                    [paymentStatusName] = paymentStatusId.ToString()
+                };
 
-                await _cacheService.SetCachedValueAsync(MappingCacheKey, JsonSerializer.Serialize(visibleStatuses), CacheExpiry);
-                LogException.LogInformation("PaymentStatus is updated from API and cached in Redis.");
+                await _cacheService.SetCachedValueAsync(
+                    MappingCacheKey,
+                    JsonSerializer.Serialize(cacheDict),
+                    CacheExpiry
+                );
 
-                return visibleStatuses.TryGetValue(paymentStatusName, out var idStringFromApi)
-                    && Guid.TryParse(idStringFromApi, out var parsedId)
-                    ? parsedId
-                    : Guid.Empty;
+                return paymentStatusId;
             }
             catch (Exception ex)
             {

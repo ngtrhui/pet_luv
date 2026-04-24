@@ -156,7 +156,7 @@ const PetFamilyModal = ({
                               ? 'bg-white border-[3px] border-primary'
                               : 'bg-white'
                           }`}
-                          onClick={() => setParentRole('mẹ')}
+                          onClick={() => setParentRole('me')}
                         >
                           Là Mẹ
                         </button>

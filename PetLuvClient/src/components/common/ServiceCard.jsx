@@ -11,13 +11,19 @@ const ServiceCard = ({ service, serviceType = 'spa' }) => {
       }`}
       className='bg-white shadow-lg rounded-2xl overflow-hidden max-w-sm transition-transform transform hover:scale-105 hover:cursor-pointer'
     >
-      <img
+      {/* <img
         src={`${
           !Array.isArray(service?.serviceImageUrls) ||
           service?.serviceImageUrls.length === 0
             ? '/logo.png'
             : 'http://localhost:5020' + service?.serviceImageUrls[0]
         }`}
+        alt={service?.serviceName}
+        className='w-full h-48 object-cover'
+      /> */}
+
+      <img
+        src="/logo.png"
         alt={service?.serviceName}
         className='w-full h-48 object-cover'
       />

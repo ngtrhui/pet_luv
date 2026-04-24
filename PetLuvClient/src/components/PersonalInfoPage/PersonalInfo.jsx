@@ -130,170 +130,223 @@ const PersonalInfo = () => {
   }, [error]);
 
   return (
-    <Box sx={{ px: 3 }}>
-      <Stack spacing={3}>
-        {/* Header: Avatar và Toggle */}
-        <Stack
-          direction='row'
-          alignItems='center'
-          justifyContent='space-between'
+    <Box sx={{ px: 3, py: 4 }}>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', md: '300px 1fr' },
+          gap: 4,
+          maxWidth: '1200px',
+          mx: 'auto',
+        }}
+      >
+        {/* LEFT PANEL */}
+        <Box
+          sx={{
+            bgcolor: 'white',
+            borderRadius: 3,
+            p: 3,
+            textAlign: 'center',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
+            height: 'fit-content',
+          }}
         >
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Box sx={{ position: 'relative' }}>
-              <Avatar
-                src={avatarPreview}
-                alt={formValues?.fullName}
-                sx={{ width: '8rem', height: '8rem' }}
-              />
-              {editMode && (
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    bgcolor: 'rgba(14,24,38,0.5)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    opacity: 0,
-                    borderRadius: '50%',
-                    transition: 'opacity 0.3s',
-                    '&:hover': { opacity: 1 },
-                  }}
-                >
-                  <label htmlFor='avatar-upload' style={{ cursor: 'pointer' }}>
-                    <img
-                      src='/camera_icon.png'
-                      alt='Change Avatar'
-                      className='w-1/3 mx-auto opacity-50'
-                    />
-                  </label>
-                </Box>
-              )}
-            </Box>
-            <input
-              id='avatar-upload'
-              type='file'
-              accept='image/*'
-              style={{ display: 'none' }}
-              onChange={handleAvatarChange}
+          <Box sx={{ position: 'relative', display: 'inline-block' }}>
+            <Avatar
+              src={avatarPreview}
+              alt={formValues?.fullName}
+              sx={{ width: 120, height: 120, mx: 'auto' }}
+            />
+
+            {editMode && (
+              <Box
+                sx={{
+                  position: 'absolute',
+                  inset: 0,
+                  bgcolor: 'rgba(0,0,0,0.5)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '50%',
+                  opacity: 0,
+                  transition: '0.3s',
+                  '&:hover': { opacity: 1 },
+                }}
+              >
+                <label htmlFor='avatar-upload' style={{ cursor: 'pointer' }}>
+                  <img
+                    src='/camera_icon.png'
+                    alt='Change Avatar'
+                    className='w-1/2 opacity-70'
+                  />
+                </label>
+              </Box>
+            )}
+          </Box>
+
+          <input
+            id='avatar-upload'
+            type='file'
+            accept='image/*'
+            style={{ display: 'none' }}
+            onChange={handleAvatarChange}
+          />
+
+          <Box sx={{ mt: 2 }}>
+            <h3 className='text-lg font-semibold'>{formValues.fullName}</h3>
+            <p className='text-gray-500 text-sm'>{formValues.email}</p>
+          </Box>
+
+          <Box sx={{ mt: 3 }}>
+            <FormControlLabel
+              control={<Switch checked={editMode} onChange={handleToggleEdit} />}
+              label={editMode ? 'Chế độ chỉnh sửa' : 'Chế độ xem'}
             />
           </Box>
-          <FormControlLabel
-            control={<Switch checked={editMode} onChange={handleToggleEdit} />}
-            label={editMode ? 'Sửa' : 'Xem'}
-          />
-        </Stack>
+        </Box>
 
-        {/* Các ô input hiển thị thông tin người dùng theo dạng stack */}
-        <TextField
-          fullWidth
-          label='Họ tên'
-          name='fullName'
-          value={formValues.fullName}
-          onChange={handleChange}
-          disabled={!editMode}
-          variant='outlined'
-          InputLabelProps={{ sx: getLabelSx('fullName') }}
-          error={Boolean(errors.fullName)}
-          helperText={errors.fullName}
-        />
-        <TextField
-          fullWidth
-          label='Email'
-          name='email'
-          value={formValues.email}
-          onChange={handleChange}
-          disabled={!editMode}
-          variant='outlined'
-          InputLabelProps={{ sx: getLabelSx('email') }}
-          error={Boolean(errors.email)}
-          helperText={errors.email}
-        />
-        <TextField
-          fullWidth
-          label='Số điện thoại'
-          name='phoneNumber'
-          value={formValues.phoneNumber}
-          onChange={handleChange}
-          disabled={!editMode}
-          variant='outlined'
-          InputLabelProps={{ sx: getLabelSx('phoneNumber') }}
-          error={Boolean(errors.phoneNumber)}
-          helperText={errors.phoneNumber}
-        />
-        <TextField
-          fullWidth
-          select
-          label='Giới tính'
-          name='gender'
-          value={formValues.gender}
-          onChange={handleChange}
-          disabled={!editMode}
-          variant='outlined'
-          SelectProps={{ native: true }}
-          InputLabelProps={{ sx: getLabelSx('gender') }}
-          error={Boolean(errors.gender)}
-          helperText={errors.gender}
+        {/* RIGHT PANEL */}
+        <Box
+          sx={{
+            bgcolor: 'white',
+            borderRadius: 3,
+            p: 4,
+            boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
+          }}
         >
-          <option value=''>Chọn giới tính</option>
-          <option value='true'>Nam</option>
-          <option value='false'>Nữ</option>
-        </TextField>
+          <Stack spacing={4}>
+            {/* SECTION 1 */}
+            <Box>
+              <h2 className='text-xl font-semibold mb-4'>Thông tin cá nhân</h2>
 
-        <DatePicker
-          label='Ngày sinh'
-          value={formValues.dateOfBirth ? formValues.dateOfBirth : null}
-          onChange={(newValue) =>
-            setFormValues({
-              ...formValues,
-              dateOfBirth: newValue ? format(newValue, dateFormat) : null,
-            })
-          }
-          disabled={!editMode}
-          // format='dd/MM/yyyy'
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              fullWidth
-              InputLabelProps={{ sx: getLabelSx('dateOfBirth') }}
-              error={Boolean(errors.dateOfBirth)}
-              helperText={errors.dateOfBirth}
-            />
-          )}
-        />
-        <TextField
-          fullWidth
-          label='Địa chỉ'
-          name='address'
-          value={formValues.address}
-          onChange={handleChange}
-          disabled={!editMode}
-          variant='outlined'
-          InputLabelProps={{ sx: getLabelSx('address') }}
-          error={Boolean(errors.address)}
-          helperText={errors.address}
-        />
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+                  gap: 3,
+                }}
+              >
+                <TextField
+                  fullWidth
+                  label='Họ tên'
+                  name='fullName'
+                  value={formValues.fullName}
+                  onChange={handleChange}
+                  disabled={!editMode}
+                  InputLabelProps={{ sx: getLabelSx('fullName') }}
+                  error={Boolean(errors.fullName)}
+                  helperText={errors.fullName}
+                />
 
-        {/* Nút cập nhật */}
-        <Button
-          disabled={!editMode}
-          variant='contained'
-          color='primary'
-          onClick={handleUpdate}
-          fullWidth
-          sx={{ py: 2, borderRadius: 2, color: 'white' }}
-          className={`${loading && 'hover:cursor-not-allowed bg-primary-dark'}`}
-        >
-          {loading ? (
-            <CircularProgress size={'1rem'} color='primary' />
-          ) : (
-            'Cập nhật'
-          )}
-        </Button>
-      </Stack>
+                <TextField
+                  fullWidth
+                  label='Email'
+                  name='email'
+                  value={formValues.email}
+                  onChange={handleChange}
+                  disabled={!editMode}
+                  InputLabelProps={{ sx: getLabelSx('email') }}
+                  error={Boolean(errors.email)}
+                  helperText={errors.email}
+                />
+
+                <TextField
+                  fullWidth
+                  label='Số điện thoại'
+                  name='phoneNumber'
+                  value={formValues.phoneNumber}
+                  onChange={handleChange}
+                  disabled={!editMode}
+                  InputLabelProps={{ sx: getLabelSx('phoneNumber') }}
+                  error={Boolean(errors.phoneNumber)}
+                  helperText={errors.phoneNumber}
+                />
+
+                <TextField
+                  fullWidth
+                  select
+                  label='Giới tính'
+                  name='gender'
+                  value={formValues.gender}
+                  onChange={handleChange}
+                  disabled={!editMode}
+                  SelectProps={{ native: true }}
+                  InputLabelProps={{ sx: getLabelSx('gender') }}
+                  error={Boolean(errors.gender)}
+                  helperText={errors.gender}
+                >
+                  <option value=''>Chọn giới tính</option>
+                  <option value='true'>Nam</option>
+                  <option value='false'>Nữ</option>
+                </TextField>
+
+                <DatePicker
+                  label='Ngày sinh'
+                  value={formValues.dateOfBirth ? formValues.dateOfBirth : null}
+                  onChange={(newValue) =>
+                    setFormValues({
+                      ...formValues,
+                      dateOfBirth: newValue
+                        ? format(newValue, dateFormat)
+                        : null,
+                    })
+                  }
+                  disabled={!editMode}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      fullWidth
+                      InputLabelProps={{ sx: getLabelSx('dateOfBirth') }}
+                      error={Boolean(errors.dateOfBirth)}
+                      helperText={errors.dateOfBirth}
+                    />
+                  )}
+                />
+
+                <TextField
+                  fullWidth
+                  label='Địa chỉ'
+                  name='address'
+                  value={formValues.address}
+                  onChange={handleChange}
+                  disabled={!editMode}
+                  InputLabelProps={{ sx: getLabelSx('address') }}
+                  error={Boolean(errors.address)}
+                  helperText={errors.address}
+                  sx={{ gridColumn: 'span 2' }}
+                />
+              </Box>
+            </Box>
+
+            {/* ACTION */}
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                gap: 2,
+                borderTop: '1px solid #eee',
+                pt: 3,
+              }}
+            >
+              <Button
+                disabled={!editMode}
+                variant='contained'
+                color='primary'
+                onClick={handleUpdate}
+                sx={{ px: 4, py: 1.5, borderRadius: 2 }}
+                className={`${loading && 'hover:cursor-not-allowed bg-primary'
+                  }`}
+              >
+                {loading ? (
+                  <CircularProgress size={'1rem'} color='primary' />
+                ) : (
+                  'Cập nhật'
+                )}
+              </Button>
+            </Box>
+          </Stack>
+        </Box>
+      </Box>
     </Box>
   );
 };

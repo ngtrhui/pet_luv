@@ -197,8 +197,14 @@ namespace PaymentApi.Infrastructure.Repositories
         }
 
         public async Task<PaymentMethod> FindByName(string paymentMethodName)
-        {
-            return await _context.PaymentMethod.FirstOrDefaultAsync(x => x.PaymentMethodName.ToLower().Trim().Equals(paymentMethodName.Trim().ToLower())) ?? null!;
-        }
+{
+    if (string.IsNullOrWhiteSpace(paymentMethodName))
+        return null!;
+
+    var keyword = paymentMethodName.Trim().ToLower();
+
+    return await _context.PaymentMethod
+        .FirstOrDefaultAsync(x => x.PaymentMethodName.ToLower() == keyword);
+}
     }
 }

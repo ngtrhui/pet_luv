@@ -34,6 +34,7 @@ namespace PaymentApi.Infrastructure.DependencyInjection
                         configuration["Vnpay:HashSecret"]!,
                         configuration["Vnpay:BaseUrl"]!,
                         configuration["Vnpay:CallbackUrl"]!
+                        
                     );
                     return vnpayService;
                 }

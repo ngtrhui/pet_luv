@@ -192,7 +192,7 @@ const BookingSummary = () => {
               <h3 className='text-sm font-medium text-gray-500'>
                 Loại Dịch Vụ
               </h3>
-              <p className='text-lg font-semibold'>{bookingTypeName}</p>
+              <p className='text-lg text-gray-500 font-semibold'>{bookingTypeName}</p>
             </div>
           </div>
 
@@ -203,7 +203,7 @@ const BookingSummary = () => {
               </div>
               <div className='ml-4'>
                 <h3 className='text-sm font-medium text-gray-500'>Thú Cưng</h3>
-                <p className='text-lg font-semibold'>
+                <p className='text-lg text-gray-500 font-semibold'>
                   {selectedPetDetails.petName}{' '}
                   {selectedPetDetails.breed?.breedName || ''} -
                   {selectedPetDetails.petWeight
@@ -251,7 +251,7 @@ const BookingSummary = () => {
         <div className='p-6 border-t border-gray-200'>
           <div className='flex items-center mb-4'>
             <IoGrid className='text-primary mr-2 text-xl' />
-            <h3 className='font-medium text-lg'>Combo Dịch Vụ Đã Chọn</h3>
+            <h3 className='font-medium text-gray-500 text-lg'>Combo Dịch Vụ Đã Chọn</h3>
           </div>
 
           <div className='overflow-x-auto'>
@@ -282,9 +282,8 @@ const BookingSummary = () => {
                 {selectedCombos.map((combo, index) => (
                   <tr key={`${combo.serviceComboId}-${index}`}>
                     <td
-                      className={`px-6 py-4 whitespace-nowrap ${
-                        index % 2 !== 0 ? 'bg-tertiary-light' : ''
-                      }`}
+                      className={`px-6 py-4 whitespace-nowrap ${index % 2 !== 0 ? 'bg-tertiary-light' : ''
+                        }`}
                     >
                       <div className='flex items-center'>
                         <div className='text-left'>
@@ -295,16 +294,14 @@ const BookingSummary = () => {
                       </div>
                     </td>
                     <td
-                      className={`px-6 py-4 whitespace-nowrap text-sm line-clamp-1 max-w-[8rem] text-gray-500 ${
-                        index % 2 !== 0 ? 'bg-tertiary-light' : ''
-                      }`}
+                      className={`px-6 py-4 whitespace-nowrap text-sm line-clamp-1 max-w-[8rem] text-gray-500 ${index % 2 !== 0 ? 'bg-tertiary-light' : ''
+                        }`}
                     >
                       {combo.serviceComboDesc || 'Gói dịch vụ kết hợp'}
                     </td>
                     <td
-                      className={`px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right ${
-                        index % 2 !== 0 ? 'bg-tertiary-light' : ''
-                      }`}
+                      className={`px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right ${index % 2 !== 0 ? 'bg-tertiary-light' : ''
+                        }`}
                     >
                       {formatCurrency(totalCombosPrice)}
                     </td>
@@ -352,9 +349,8 @@ const BookingSummary = () => {
                 {selectedServices.map((service, index) => (
                   <tr key={`${service.serviceId}-${index}`}>
                     <td
-                      className={`px-6 py-4 whitespace-nowrap ${
-                        index % 2 !== 0 ? 'bg-tertiary-light' : ''
-                      }`}
+                      className={`px-6 py-4 whitespace-nowrap ${index % 2 !== 0 ? 'bg-tertiary-light' : ''
+                        }`}
                     >
                       <div className='flex items-center'>
                         <div className='text-left'>
@@ -371,16 +367,14 @@ const BookingSummary = () => {
                     </td>
 
                     <td
-                      className={`px-6 py-4 whitespace-nowrap text-sm text-gray-500 ${
-                        index % 2 !== 0 ? 'bg-tertiary-light' : ''
-                      }`}
+                      className={`px-6 py-4 whitespace-nowrap text-sm text-gray-500 ${index % 2 !== 0 ? 'bg-tertiary-light' : ''
+                        }`}
                     >
                       {selectedVariant?.estimateTime}
                     </td>
                     <td
-                      className={`px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right ${
-                        index % 2 !== 0 ? 'bg-tertiary-light' : ''
-                      }`}
+                      className={`px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right ${index % 2 !== 0 ? 'bg-tertiary-light' : ''
+                        }`}
                     >
                       {formatCurrency(selectedVariant?.price)}
                     </td>

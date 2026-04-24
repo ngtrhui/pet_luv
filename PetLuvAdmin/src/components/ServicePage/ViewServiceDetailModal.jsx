@@ -76,8 +76,8 @@ const ViewServiceDetailModal = ({ open, onClose, service }) => {
       return service.serviceName.toLowerCase().includes('chó')
         ? 'chó'
         : service.serviceName.toLowerCase().includes('mèo')
-        ? 'mèo'
-        : '';
+          ? 'mèo'
+          : '';
     }
 
     const breedName = service.serviceVariants[0].breedName.toLowerCase();
@@ -85,8 +85,8 @@ const ViewServiceDetailModal = ({ open, onClose, service }) => {
     return breedName.includes('chó')
       ? 'chó'
       : breedName.includes('mèo')
-      ? 'mèo'
-      : '';
+        ? 'mèo'
+        : '';
   }, [service]);
 
   const handleOpenAddVariantModal = () => {
@@ -172,8 +172,8 @@ const ViewServiceDetailModal = ({ open, onClose, service }) => {
     return service.walkDogServiceVariants?.length > 0
       ? service.walkDogServiceVariants
       : walkDogVariants?.length > 0
-      ? walkDogVariants
-      : [];
+        ? walkDogVariants
+        : [];
   }, [service.walkDogServiceVariants, walkDogVariants]);
 
   return (
@@ -190,9 +190,15 @@ const ViewServiceDetailModal = ({ open, onClose, service }) => {
           <div className='grid grid-cols-2 gap-2'>
             {service.serviceImageUrls?.length > 0 ? (
               service.serviceImageUrls.map((url, index) => (
+                // <img
+                //   key={index}
+                //   src={`http://localhost:5020${url}`}
+                //   alt={`Service ${index}`}
+                //   className='w-full aspect-square object-cover rounded-lg shadow-md'
+                // />
                 <img
                   key={index}
-                  src={`http://localhost:5020${url}`}
+                  src="/logo.png"
                   alt={`Service ${index}`}
                   className='w-full aspect-square object-cover rounded-lg shadow-md'
                 />
@@ -216,11 +222,10 @@ const ViewServiceDetailModal = ({ open, onClose, service }) => {
             <p>
               <strong>Trạng thái:</strong>{' '}
               <span
-                className={`px-2 py-1 rounded-md ${
-                  service.isVisible
+                className={`px-2 py-1 rounded-md ${service.isVisible
                     ? 'bg-green-100 text-green-600'
                     : 'bg-red-100 text-red-600'
-                }`}
+                  }`}
               >
                 {service.isVisible ? 'Hiển thị' : 'Ẩn'}
               </span>
@@ -229,9 +234,8 @@ const ViewServiceDetailModal = ({ open, onClose, service }) => {
               <strong>Mô tả:</strong>{' '}
               <span
                 ref={descRef}
-                className={`block overflow-hidden transition-all ${
-                  showMore ? 'line-clamp-none' : 'line-clamp-3'
-                }`}
+                className={`block overflow-hidden transition-all ${showMore ? 'line-clamp-none' : 'line-clamp-3'
+                  }`}
                 style={{
                   display: '-webkit-box',
                   WebkitBoxOrient: 'vertical',
@@ -398,7 +402,7 @@ const ViewServiceDetailModal = ({ open, onClose, service }) => {
       </div>
 
       {showAddVariantModal &&
-      !service.serviceTypeName.toLowerCase().includes('dắt chó') ? (
+        !service.serviceTypeName.toLowerCase().includes('dắt chó') ? (
         <AddVariantModal
           open={showAddVariantModal}
           onClose={handleCloseAddVariantModal}

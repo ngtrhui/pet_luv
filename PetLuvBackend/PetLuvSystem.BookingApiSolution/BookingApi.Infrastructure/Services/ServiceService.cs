@@ -235,7 +235,7 @@ namespace BookingApi.Infrastructure.Services
             LogException.LogInformation(json);
 
             var jsonNode = JsonNode.Parse(json);
-            var serviceCombosJson = jsonNode?["data"]?.ToJsonString();
+            var serviceCombosJson = jsonNode?["data"]?["data"]?.ToJsonString();
 
             if (string.IsNullOrEmpty(serviceCombosJson))
             {

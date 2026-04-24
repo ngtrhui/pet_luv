@@ -22,6 +22,24 @@ class PaymentsService {
       throw error;
     }
   }
+
+  async createPaymentUrl({ bookingId, userId, money, description }) {
+    try {
+      const query = new URLSearchParams({
+        bookingId,
+        userId,
+        money,
+        description,
+      }).toString();
+
+      const response = await this.api.get(`/create-payment-url?${query}`);
+
+      return response;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
 }
 
 export default new PaymentsService();

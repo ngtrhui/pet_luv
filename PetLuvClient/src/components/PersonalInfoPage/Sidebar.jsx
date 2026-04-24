@@ -23,64 +23,93 @@ const Sidebar = ({ user, sidebarItems = SidebarItems }) => {
   }, [dispatch, navigate]);
 
   return (
-    <aside className='p-4 bg-tertiary-light w-64 rounded-2xl'>
-      <div className='flex flex-col items-center mb-6'>
-        <Avatar
-          alt={user?.fullName || 'User'}
-          src={user?.avatar ? `${user?.avatar}` : '/logo.png'}
-          sx={{ width: 64, height: 64 }}
-        />
-        <Typography
-          variant='subtitle1'
-          sx={{
-            mt: 1,
-            maxWidth: '100%',
-            fontSize: '0.875rem',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-          }}
-        >
-          {user?.fullName || 'Người dùng'}
-        </Typography>
-      </div>
+    <aside className='w-72 h-full p-4'>
+      <div className='h-full flex flex-col bg-white/70 backdrop-blur-xl rounded-3xl shadow-lg border border-gray-200'>
 
-      <nav>
-        {sidebarItems.map((item, index) => {
-          if (item.path === 'logout') {
+        {/* HEADER / PROFILE */}
+        <div className='flex flex-col items-center py-6 border-b'>
+          <div className='relative'>
+            <Avatar
+              alt={user?.fullName || 'User'}
+              src={user?.avatar ? `${user?.avatar}` : '/logo.png'}
+              sx={{ width: 72, height: 72 }}
+            />
+            <div className='absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white rounded-full' />
+          </div>
+
+          <Typography
+            variant='subtitle1'
+            sx={{
+              mt: 2,
+              maxWidth: '90%',
+              fontSize: '0.9rem',
+              fontWeight: 500,
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
+          >
+            {user?.fullName || 'Người dùng'}
+          </Typography>
+
+          <p className='text-xs text-gray-500 mt-1'>Online</p>
+        </div>
+
+        {/* NAVIGATION */}
+        <nav className='flex-1 px-2 py-4 space-y-1 overflow-y-auto'>
+          {sidebarItems.map((item, index) => {
+            if (item.path === 'logout') {
+              return (
+                <button
+                  type='button'
+                  key={`sidebar-item-${index}`}
+                  onClick={handleLogout}
+                  className='group flex items-center w-full px-3 py-2 rounded-xl text-gray-600 hover:bg-red-500 hover:text-white transition-all duration-200'
+                >
+                  <span className='mr-3 transition-transform group-hover:scale-110'>
+                    {item.icon}
+                  </span>
+                  <span className='text-sm font-medium'>{item.label}</span>
+                </button>
+              );
+            }
+
+            const isActive =
+              routeString.length < 3 && item.path === ''
+                ? true
+                : item.path === routeString[routeString.length - 1];
+
             return (
-              <button
-                type='button'
+              <NavLink
                 key={`sidebar-item-${index}`}
                 to={item.path}
-                className={
-                  'flex items-center p-2 mb-2 text-gray-700 hover:bg-primary hover:text-white rounded-lg w-full'
-                }
-                onClick={handleLogout}
+                className={`relative flex items-center px-3 py-2 rounded-xl transition-all duration-200 group
+              ${isActive
+                    ? 'bg-primary text-white shadow-md'
+                    : 'text-gray-700 hover:bg-primary hover:text-white'
+                  }
+            `}
               >
-                <span className='mr-2'>{item.icon}</span>
-                <span>{item.label}</span>
-              </button>
+                {/* ACTIVE INDICATOR */}
+                {isActive && (
+                  <span className='absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-white rounded-r-full' />
+                )}
+
+                <span className='mr-3 transition-transform group-hover:scale-110'>
+                  {item.icon}
+                </span>
+
+                <span className='text-sm font-medium'>{item.label}</span>
+              </NavLink>
             );
-          }
-          return (
-            <NavLink
-              key={`sidebar-item-${index}`}
-              to={item.path}
-              className={
-                routeString.length < 3 && item.path === ''
-                  ? 'flex items-center p-2 mb-2 text-white bg-primary rounded-lg'
-                  : item.path === routeString[routeString.length - 1]
-                  ? 'flex items-center p-2 mb-2 text-white bg-primary rounded-lg'
-                  : 'flex items-center p-2 mb-2 text-gray-700 hover:bg-primary hover:text-white rounded-lg'
-              }
-            >
-              <span className='mr-2'>{item.icon}</span>
-              <span>{item.label}</span>
-            </NavLink>
-          );
-        })}
-      </nav>
+          })}
+        </nav>
+
+        {/* FOOTER */}
+        <div className='p-4 border-t text-xs text-gray-400 text-center'>
+          Pet App Dashboard
+        </div>
+      </div>
     </aside>
   );
 };

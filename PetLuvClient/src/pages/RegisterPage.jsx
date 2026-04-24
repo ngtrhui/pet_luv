@@ -93,251 +93,174 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className='flex items-center justify-center min-h-screen bg-gray-100 p-4'>
-      <Stack
-        spacing={4}
-        className='bg-white p-6 rounded-lg shadow-md max-w-4xl w-full'
-      >
-        <h2 className='text-3xl font-bold text-center'>Đăng ký</h2>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {({ setFieldValue, isSubmitting }) => (
-            <Form>
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                <div className='space-y-4'>
-                  <div>
-                    <label
-                      htmlFor='fullName'
-                      className='block text-sm font-medium text-gray-700'
-                    >
-                      Họ và tên
-                    </label>
-                    <Field
-                      type='text'
-                      name='fullName'
-                      id='fullName'
-                      className='mt-1 block w-full rounded-md border border-gray-300 p-2'
-                    />
-                    <ErrorMessage
-                      name='fullName'
-                      component='div'
-                      className='text-red-500 text-sm mt-1'
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor='gender'
-                      className='block text-sm font-medium text-gray-700'
-                    >
-                      Giới tính
-                    </label>
-                    <Field
-                      as='select'
-                      name='gender'
-                      id='gender'
-                      className='mt-1 block w-full rounded-md border border-gray-300 p-2'
-                    >
-                      <option value=''>Chọn giới tính</option>
-                      <option value='true'>Nam</option>
-                      <option value='false'>Nữ</option>
-                    </Field>
-                    <ErrorMessage
-                      name='gender'
-                      component='div'
-                      className='text-red-500 text-sm mt-1'
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor='dateOfBirth'
-                      className='block text-sm font-medium text-gray-700'
-                    >
-                      Ngày sinh
-                    </label>
-                    <Field
-                      type='date'
-                      name='dateOfBirth'
-                      id='dateOfBirth'
-                      className='mt-1 block w-full rounded-md border border-gray-300 p-2'
-                    />
-                    <ErrorMessage
-                      name='dateOfBirth'
-                      component='div'
-                      className='text-red-500 text-sm mt-1'
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor='phoneNumber'
-                      className='block text-sm font-medium text-gray-700'
-                    >
-                      Số điện thoại
-                    </label>
-                    <Field
-                      type='text'
-                      name='phoneNumber'
-                      id='phoneNumber'
-                      className='mt-1 block w-full rounded-md border border-gray-300 p-2'
-                    />
-                    <ErrorMessage
-                      name='phoneNumber'
-                      component='div'
-                      className='text-red-500 text-sm mt-1'
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor='address'
-                      className='block text-sm font-medium text-gray-700'
-                    >
-                      Địa chỉ
-                    </label>
-                    <Field
-                      type='text'
-                      name='address'
-                      id='address'
-                      className='mt-1 block w-full rounded-md border border-gray-300 p-2'
-                    />
-                    <ErrorMessage
-                      name='address'
-                      component='div'
-                      className='text-red-500 text-sm mt-1'
-                    />
-                  </div>
-                </div>
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-                <div className='space-y-4'>
-                  <div>
-                    <label
-                      htmlFor='email'
-                      className='block text-sm font-medium text-gray-700'
-                    >
-                      Email
-                    </label>
+      {/* BACKGROUND */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary" />
+
+      {/* GRADIENT LIGHT */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,#3b82f6,transparent_40%),radial-gradient(circle_at_70%_70%,#22c55e,transparent_40%)] opacity-30" />
+
+      {/* FORM */}
+      <div className="relative z-10 w-full max-w-5xl p-8">
+
+        <Stack
+          spacing={6}
+          className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl"
+        >
+
+          {/* HEADER */}
+          <div>
+            <h2 className="text-3xl font-bold text-white text-center">
+              Tạo tài khoản
+            </h2>
+
+            {/* FAKE PROGRESS */}
+            <div className="mt-6">
+              <div className="flex justify-between text-sm text-white mb-2">
+                <span>Thông tin</span>
+                <span>Tài khoản</span>
+              </div>
+              <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+                <div className="w-1/2 h-full bg-gradient-to-r from-primary to-secondary" />
+              </div>
+            </div>
+          </div>
+
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            {({ setFieldValue, isSubmitting }) => (
+              <Form>
+
+                <div className="grid md:grid-cols-2 gap-10">
+
+                  {/* STEP 1 */}
+                  <div className="space-y-6">
+                    <h3 className="text-white text-lg font-semibold">
+                      Thông tin cá nhân
+                    </h3>
+
+                    <div className="group">
+                      <Field
+                        name="fullName"
+                        placeholder="Họ và tên"
+                        className="w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:ring-2 focus:ring-primary outline-none transition"
+                      />
+                      <ErrorMessage name="fullName" component="div" className="text-red-400 text-sm mt-1" />
+                    </div>
+
                     <Field
-                      type='email'
-                      name='email'
-                      id='email'
-                      className='mt-1 block w-full rounded-md border border-gray-300 p-2'
+                      as="select"
+                      name="gender"
+                      className="w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white"
+                    >
+                      <option value="">Chọn giới tính</option>
+                      <option value="true" className="text-black">Nam</option>
+                      <option value="false" className="text-black">Nữ</option>
+                    </Field>
+
+                    <Field
+                      type="date"
+                      name="dateOfBirth"
+                      className="w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white"
                     />
-                    <ErrorMessage
-                      name='email'
-                      component='div'
-                      className='text-red-500 text-sm mt-1'
+
+                    <Field
+                      name="phoneNumber"
+                      placeholder="Số điện thoại"
+                      className="w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50"
+                    />
+
+                    <Field
+                      name="address"
+                      placeholder="Địa chỉ"
+                      className="w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50"
                     />
                   </div>
-                  <div>
-                    <label
-                      htmlFor='password'
-                      className='block text-sm font-medium text-gray-700'
-                    >
-                      Mật khẩu
-                    </label>
+
+                  {/* STEP 2 */}
+                  <div className="space-y-6">
+                    <h3 className="text-white text-lg font-semibold">
+                      Thông tin tài khoản
+                    </h3>
+
                     <Field
-                      type='password'
-                      name='password'
-                      id='password'
-                      className='mt-1 block w-full rounded-md border border-gray-300 p-2'
+                      name="email"
+                      placeholder="Email"
+                      className="w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50"
                     />
-                    <ErrorMessage
-                      name='password'
-                      component='div'
-                      className='text-red-500 text-sm mt-1'
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor='confirmPassword'
-                      className='block text-sm font-medium text-gray-700'
-                    >
-                      Xác nhận mật khẩu
-                    </label>
+
                     <Field
-                      type='password'
-                      name='confirmPassword'
-                      id='confirmPassword'
-                      className='mt-1 block w-full rounded-md border border-gray-300 p-2'
+                      type="password"
+                      name="password"
+                      placeholder="Mật khẩu"
+                      className="w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50"
                     />
-                    <ErrorMessage
-                      name='confirmPassword'
-                      component='div'
-                      className='text-red-500 text-sm mt-1'
+
+                    <Field
+                      type="password"
+                      name="confirmPassword"
+                      placeholder="Xác nhận mật khẩu"
+                      className="w-full p-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50"
                     />
-                  </div>
-                  <div>
-                    <label className='block text-sm font-medium text-gray-700'>
-                      Avatar
-                    </label>
-                    <div className='mt-1 flex flex-col items-center'>
-                      <div className='w-28 h-28 rounded-full border border-gray-300 overflow-hidden flex items-center justify-center'>
+
+                    {/* AVATAR */}
+                    <div className="flex items-center gap-4">
+                      <div className="w-20 h-20 rounded-full overflow-hidden border border-white/20">
                         {avatarPreview ? (
-                          <img
-                            src={avatarPreview}
-                            alt='Avatar Preview'
-                            className='object-cover w-full h-full'
-                          />
+                          <img src={avatarPreview} className="w-full h-full object-cover" />
                         ) : (
-                          <img src='/logo.png' alt='Placeholder Image' />
+                          <img src="/logo.png" />
                         )}
                       </div>
-                      <input
-                        id='avatar'
-                        name='avatar'
-                        type='file'
-                        accept='image/*'
-                        onChange={(e) => handleAvatarChange(e, setFieldValue)}
-                        className='mt-2 hidden'
-                      />
-                      <label
-                        htmlFor='avatar'
-                        className='cursor-pointer mt-2 inline-block bg-primary hover:bg-primary-dark text-white py-1 px-3 rounded'
-                      >
-                        Tải ảnh lên
-                      </label>
-                      <ErrorMessage
-                        name='avatar'
-                        component='div'
-                        className='text-red-500 text-sm mt-1'
-                      />
+
+                      <div>
+                        <input
+                          id="avatar"
+                          type="file"
+                          className="hidden"
+                          onChange={(e) => handleAvatarChange(e, setFieldValue)}
+                        />
+                        <label
+                          htmlFor="avatar"
+                          className="cursor-pointer px-4 py-2 bg-white text-black rounded-lg"
+                        >
+                          Upload
+                        </label>
+                      </div>
                     </div>
                   </div>
+
                 </div>
-              </div>
-              <div className='mt-10'>
+
+                {/* BUTTON */}
                 <button
-                  type='submit'
+                  type="submit"
                   disabled={isSubmitting}
-                  className='w-full bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded'
+                  className="mt-10 w-full py-4 rounded-xl bg-gradient-to-r from-primary to-secondary text-white font-bold hover:scale-[1.02] transition"
                 >
-                  {isSubmitting ? 'Đang xử lý...' : 'Đăng ký'}
+                  {isSubmitting ? 'Đang xử lý...' : 'Tạo tài khoản'}
                 </button>
-              </div>
-            </Form>
-          )}
-        </Formik>
-        <Divider>
-          <span className='text-tertiary-dark'>hoặc đăng nhập với</span>
-        </Divider>
-        <Stack
-          spacing={4}
-          direction={'row'}
-          alignItems={'center'}
-          justifyContent={'center'}
-        >
-          <FaFacebook
-            color='blue'
-            size={35}
-            className='hover:cursor-pointer hover:opacity-85'
-          />
-          <FcGoogle
-            size={35}
-            className='hover:cursor-pointer hover:opacity-85'
-          />
+
+              </Form>
+            )}
+          </Formik>
+
+          {/* SOCIAL */}
+          <Divider>
+            <span className="text-white">hoặc</span>
+          </Divider>
+
+          <Stack direction="row" justifyContent="center" spacing={4}>
+            <FaFacebook className="text-white hover:scale-110 cursor-pointer" size={36} />
+            <FcGoogle className="hover:scale-110 cursor-pointer" size={36} />
+          </Stack>
+
         </Stack>
-      </Stack>
+      </div>
     </div>
   );
 };

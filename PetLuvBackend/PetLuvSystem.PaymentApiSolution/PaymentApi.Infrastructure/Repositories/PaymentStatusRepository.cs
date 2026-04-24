@@ -246,9 +246,15 @@ namespace PaymentApi.Infrastructure.Repositories
         }
 
         public async Task<PaymentStatus> FindByName(string paymentStatusName)
-        {
-            return await _context.PaymentStatus.FirstOrDefaultAsync(x => x.PaymentStatusName.ToLower().Trim().Equals(paymentStatusName.Trim().ToLower())) ?? null!;
-        }
+{
+    if (string.IsNullOrWhiteSpace(paymentStatusName))
+        return null!;
+
+    var keyword = paymentStatusName.Trim().ToLower();
+
+    return await _context.PaymentStatus
+        .FirstOrDefaultAsync(x => x.PaymentStatusName.ToLower() == keyword);
+}
 
         private async Task UpdateCache()
         {

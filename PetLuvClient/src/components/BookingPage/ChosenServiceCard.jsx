@@ -7,16 +7,6 @@ const ChosenServiceCard = ({ service, onClick }) => {
     <div
       className='bg-white shadow-lg rounded-2xl overflow-hidden max-w-sm transition-transform transform hover:scale-105 hover:cursor-pointer'
     >
-      <img
-        src={`${
-          !Array.isArray(service?.serviceImageUrls) ||
-          service?.serviceImageUrls.length === 0
-            ? '/logo.png'
-            : 'http://localhost:5020' + service?.serviceImageUrls[0]
-        }`}
-        alt={service?.serviceName}
-        className='w-full h-48 object-cover'
-      />
 
       <div className='p-4 text-start'>
         <h3 className='text-lg font-bold text-gray-800'>

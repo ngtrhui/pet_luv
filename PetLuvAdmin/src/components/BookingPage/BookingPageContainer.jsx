@@ -37,7 +37,7 @@ const bookingStatusColors = {
 
 // Hàm lấy màu theo trạng thái
 function getPaymentStatusColor(paymentStatusName) {
-  return paymentStatusColors[paymentStatusName] || '#fff'; // Mặc định màu đen nếu không tìm thấy
+  return paymentStatusColors[paymentStatusName] || '#000'; // Mặc định màu đen nếu không tìm thấy
 }
 
 function getBookingStatusColor(bookingStatusName) {
@@ -97,6 +97,7 @@ const columns = [
     align: 'center',
     headerAlign: 'center',
     renderCell: (params) => (
+
       <span
         style={{ backgroundColor: getPaymentStatusColor(params.value) }}
         className={`bg-[${getPaymentStatusColor(
@@ -118,13 +119,24 @@ const BookingPageContainer = () => {
   const pets = useSelector((state) => state.pets.pets);
   const users = useSelector((state) => state.users.users);
 
+  const paymentStatuses = useSelector(
+    (state) => state.paymentStatuses.paymentStatuses
+  );
+
   const selectedBooking = useSelector(
     (state) => state.bookings.selectedBooking
   );
 
   const rows = useMemo(() => {
     return Array.isArray(bookings) && bookings.length !== 0
-      ? bookings.map((item, index) => ({
+      ? bookings.map((item, index) => {
+        const paymentStatus = paymentStatuses?.find(
+          (p) =>
+            p.paymentStatusId?.toLowerCase() ===
+            item.paymentStatusId?.toLowerCase()
+        );
+
+        return {
           ...item,
           id: item.bookingId,
           index: index + 1,
@@ -136,9 +148,12 @@ const BookingPageContainer = () => {
           ),
           totalAmount: formatCurrency(item.totalAmount),
           bookingStatusName: item?.bookingStatus?.bookingStatusName,
-        }))
+
+          paymentStatusName: paymentStatus?.paymentStatusName,
+        };
+      })
       : [];
-  }, [bookings]);
+  }, [bookings, paymentStatuses]);
 
   const [searchText, setSearchText] = useState('');
   const [selectedRows, setSelectedRows] = useState([]);
@@ -249,7 +264,7 @@ const BookingPageContainer = () => {
       .catch((error) => {
         toast.error(error);
       });
-
+    dispatch(getPaymentStatuses());
     dispatch(getPets({ pageIndex: 1, pageSize: 10 }));
     dispatch(getUsers({ pageIndex: 1, pageSize: 10 }));
 

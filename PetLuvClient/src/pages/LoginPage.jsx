@@ -61,102 +61,152 @@ const LoginPage = () => {
   }, [user]);
 
   return (
-    <div className='flex items-center justify-center min-h-screen bg-gray-100'>
-      <Stack spacing={2} className='bg-white p-6 rounded-lg shadow-md w-96'>
-        <h2 className='text-2xl font-bold mb-4 text-center'>Đăng nhập</h2>
-        <Formik
-          initialValues={credentialsValue}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {() => (
-            <Form>
-              <div className='mb-4'>
-                <label
-                  htmlFor='email'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  Email
-                </label>
-                <Field
-                  type='email'
-                  name='email'
-                  id='email'
-                  className='mt-1 block w-full rounded-md border-primary-dark shadow-md focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-4'
-                />
-                <ErrorMessage
-                  name='email'
-                  component='div'
-                  className='text-red-500 text-sm mt-1'
-                />
-              </div>
-              <div className='mb-4'>
-                <label
-                  htmlFor='password'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  Mật khẩu
-                </label>
-                <Field
-                  type='password'
-                  name='password'
-                  id='password'
-                  className='mt-1 block w-full rounded-md border-primary-dark shadow-md focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-4'
-                />
-                <ErrorMessage
-                  name='password'
-                  component='div'
-                  className='text-red-500 text-sm mt-1'
-                />
-              </div>
-              <p className='text-primary text-right hover:text-primary-dark hover:cursor-pointer'>
-                Quên mật khẩu?
-              </p>
-              <button
-                disabled={loading}
-                type='submit'
-                className={`w-full bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 mt-4 rounded ${
-                  loading && 'hover:cursor-not-allowed bg-primary-dark'
-                }`}
-              >
-                {loading ? (
-                  <CircularProgress size={'1rem'} color='secondary' />
-                ) : (
-                  'Đăng nhập'
-                )}
-              </button>
-            </Form>
-          )}
-        </Formik>
-        <p className='text-center'>
-          Bạn chưa có tài khoản?{' '}
-          <Link
-            to={'/dang-ky'}
-            className='text-center text-primary hover:text-primary-dark'
-          >
-            Đăng ký ngay
-          </Link>
-        </p>
-        <Divider>
-          <span className='text-tertiary-dark'>hoặc đăng nhập với</span>
-        </Divider>
+    <div className="relative min-h-screen grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
+
+      {/* BACKGROUND GLOBAL */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,#3b82f6,transparent_40%),radial-gradient(circle_at_70%_70%,#22c55e,transparent_40%)] opacity-30" />
+
+      {/* LEFT - BRANDING */}
+      <div className="relative z-10 hidden lg:flex flex-col justify-between text-white p-12">
+
+        <div>
+          <h1 className="text-4xl font-bold mb-4">
+            PetLuv 🐾
+          </h1>
+          <p className="text-lg opacity-90">
+            Nơi chăm sóc thú cưng toàn diện, tiện lợi và đáng tin cậy.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold">
+            Chào mừng bạn quay lại!
+          </h2>
+          <p className="opacity-80">
+            Đăng nhập để tiếp tục sử dụng dịch vụ tốt nhất cho thú cưng của bạn.
+          </p>
+        </div>
+
+        {/* decor */}
+        <div className="absolute bottom-0 right-0 opacity-20 text-[10rem]">
+          🐶
+        </div>
+      </div>
+
+      {/* RIGHT - FORM */}
+      <div className="relative z-10 flex items-center justify-center px-6 py-10">
+
         <Stack
           spacing={4}
-          direction={'row'}
-          alignItems={'center'}
-          justifyContent={'center'}
+          className="w-full max-w-md text-white bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl"
         >
-          <FaFacebook
-            color='blue'
-            size={35}
-            className='hover:cursor-pointer hover:opacity-85'
-          />
-          <FcGoogle
-            size={35}
-            className='hover:cursor-pointer hover:opacity-85'
-          />
+
+          <h2 className="text-3xl font-bold text-center">
+            Đăng nhập
+          </h2>
+
+          <Formik
+            initialValues={credentialsValue}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            {() => (
+              <Form>
+
+                {/* EMAIL */}
+                <div className="mb-4">
+                  <label className="block text-sm text-white/80">
+                    Email
+                  </label>
+                  <Field
+                    type="email"
+                    name="email"
+                    className="mt-1 block w-full rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 p-4 focus:ring-2 focus:ring-primary outline-none"
+                  />
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className="text-red-300 text-sm mt-1"
+                  />
+                </div>
+
+                {/* PASSWORD */}
+                <div className="mb-4">
+                  <label className="block text-sm text-white/80">
+                    Mật khẩu
+                  </label>
+                  <Field
+                    type="password"
+                    name="password"
+                    className="mt-1 block w-full rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 p-4 focus:ring-2 focus:ring-primary outline-none"
+                  />
+                  <ErrorMessage
+                    name="password"
+                    component="div"
+                    className="text-red-300 text-sm mt-1"
+                  />
+                </div>
+
+                <p className="text-primary text-right hover:underline cursor-pointer">
+                  Quên mật khẩu?
+                </p>
+
+                {/* BUTTON */}
+                <button
+                  disabled={loading}
+                  type="submit"
+                  className={`w-full mt-4 py-3 rounded-xl bg-gradient-to-r from-primary to-secondary text-white font-semibold transition ${loading && 'opacity-70 cursor-not-allowed'
+                    }`}
+                >
+                  {loading ? (
+                    <CircularProgress size={'1rem'} color="inherit" />
+                  ) : (
+                    'Đăng nhập'
+                  )}
+                </button>
+
+              </Form>
+            )}
+          </Formik>
+
+          {/* REGISTER */}
+          <p className="text-center text-sm text-white/80">
+            Bạn chưa có tài khoản?{' '}
+            <Link
+              to={'/dang-ky'}
+              className="text-primary font-medium hover:underline"
+            >
+              Đăng ký ngay
+            </Link>
+          </p>
+
+          {/* DIVIDER */}
+          <Divider>
+            <span className="text-white/60 text-sm">
+              hoặc đăng nhập với
+            </span>
+          </Divider>
+
+          {/* SOCIAL */}
+          <Stack
+            spacing={4}
+            direction={'row'}
+            alignItems={'center'}
+            justifyContent={'center'}
+          >
+            <FaFacebook
+              size={36}
+              className="text-white hover:scale-110 transition cursor-pointer"
+            />
+            <FcGoogle
+              size={36}
+              className="hover:scale-110 transition cursor-pointer"
+            />
+          </Stack>
+
         </Stack>
-      </Stack>
+      </div>
     </div>
   );
 };

@@ -38,13 +38,21 @@ const ServiceDetailPage = () => {
     <div className='container mx-auto p-6 space-y-12' ref={headPageRef}>
       <div className='flex flex-col lg:flex-row gap-8'>
         <div className='lg:w-1/2'>
-          {serviceImageUrls && serviceImageUrls.length > 0 ? (
+          {/* {serviceImageUrls && serviceImageUrls.length > 0 ? (
             <ImageGallery imageUrls={serviceImageUrls} />
           ) : (
             <div className='w-full h-96 bg-gray-200 flex flex-col items-center justify-center rounded-lg'>
               <img src='/logo.png' alt='' />
             </div>
-          )}
+          )} */}
+
+          <div className="w-full h-96 bg-gray-200 flex flex-col items-center justify-center rounded-lg">
+            <img
+              src="/logo.png"
+              alt="logo"
+              className="h-40 object-contain"
+            />
+          </div>
         </div>
 
         <div className='lg:w-1/2'>
